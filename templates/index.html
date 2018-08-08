@@ -11,12 +11,11 @@
 	var xAxis = [];
 	var yAxis = [];
 	{% for chartInfoItem in chartInfo %}
-		chart_id.push("{{ chartInfoItem[0]|safe }}");
-		chart.push({{ chartInfoItem[1]|safe }});
-		series.push({{ chartInfoItem[2]|safe }});
-		title.push({{ chartInfoItem[3]|safe }});
-		xAxis.push({{ chartInfoItem[4]|safe }});
-		yAxis.push({{ chartInfoItem[5]|safe }});
+		chart.push({{ chartInfoItem[0]|safe }});
+		series.push({{ chartInfoItem[1]|safe }});
+		title.push({{ chartInfoItem[2]|safe }});
+		xAxis.push({{ chartInfoItem[3]|safe }});
+		yAxis.push({{ chartInfoItem[4]|safe }});
 	{% endfor %}
 
 	$(document).ready(function() {

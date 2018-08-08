@@ -13,7 +13,7 @@ def graph():
     df=pd.read_csv(files[0], names=['Name','UUID','Major','Minor','formattedtime','time','temperature','humidity','rssi','data'])
     #Major over 10 is not the packet we want
     df=df[(df.Major < 10)]
-    charttext = ['Temperature','Humidity']
+    renderTo = ['Temperature','Humidity']
     option =['temperature','humidity']
     ttext=['Temperature on iBeacons','Humidity on iBeacons']
     ytext=['Temperature','Humidity']
@@ -21,14 +21,13 @@ def graph():
     chart_type = 'line'
     chart_height = 500
     for i in range(2):
-        chartID = charttext[i];
-        chart = {"renderTo": chartID[i], "type": chart_type, "height": chart_height,}
+        chart = {"renderTo": renderTo[i], "type": chart_type, "height": chart_height,}
         series = getSeries(df,option[i])
         title = {"text":ttext[i]}
         xAxis = {"type":"datetime"}
         yAxis = {"title":{"text":ytext[i]}}
 
-        chartInfo.append([chartID, chart, series, title, xAxis, yAxis])
+        chartInfo.append([chart, series, title, xAxis, yAxis])
 
     return render_template('index.html', chartInfo=chartInfo)
 
