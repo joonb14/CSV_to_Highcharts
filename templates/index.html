@@ -1,13 +1,8 @@
 <html>
-<!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
-<!-- 부가적인 테마 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-
-<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <meta name="viewport" content = "width=device-width, initial-scale=1.0">
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="http://code.highcharts.com/highcharts.js"></script>
 <head>
 <script>
 	var chart_id = [];
@@ -24,22 +19,28 @@
 		xAxis.push({{ chartInfoItem[4]|safe }});
 		yAxis.push({{ chartInfoItem[5]|safe }});
 	{% endfor %}
-	console.log(chart_id);
+	
+	$(document).ready(function() {
+		$('#Humidity').highcharts({
+			chart: chart[1],
+			title: title[1],
+			xAxis: xAxis[1],
+			yAxis: yAxis[1],
+			series: series[1]
+		});
+		$('#Temperature').highcharts({
+			chart: chart[0],
+			title: title[0],
+			xAxis: xAxis[0],
+			yAxis: yAxis[0],
+			series: series[0]
+		});
+	});
 </script>
 </head>
 
-
 <body>
-	
 	<div id="Temperature" class="chart" style="height: 45vh; width: 100vw"></div>
 	<div id="Humidity" class="chart" style="height: 45vh; width: 100vw"></div>
-
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-	<script src="http://code.highcharts.com/highcharts.js"></script>
-	<script src="../static/temperature.js"></script>
-	<script src="../static/humidity.js"></script>
-
 </body>
-
-
 </html>		
