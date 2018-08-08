@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 @app.route('/')
 @app.route('/graph')
-def graph(chart_type = 'line', chart_height = 500):
+def graph():
     files = glob.glob("*.csv")
     df=pd.read_csv(files[0], names=['Name','UUID','Major','Minor','formattedtime','time','temperature','humidity','rssi','data'])
     #Major over 10 is not the packet we want
@@ -18,6 +18,8 @@ def graph(chart_type = 'line', chart_height = 500):
     ttext=['Temperature on iBeacons','Humidity on iBeacons']
     ytext=['Temperature','Humidity']
     chartInfo = []
+    chart_type = 'line'
+    chart_height = 500
     for i in range(2):
         chartID = charttext[i];
         chart = {"renderTo": chartID[i], "type": chart_type, "height": chart_height,}
