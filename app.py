@@ -21,7 +21,7 @@ def graph():
     chart_type = 'line'
     chart_height = 500
     for i in range(2):
-        chart = {"renderTo": renderTo[i], "type": chart_type, "height": chart_height,}
+        chart = {"renderTo": renderTo[i], "type": chart_type, "height": chart_height}
         series = getSeries(df,option[i])
         title = {"text":ttext[i]}
         xAxis = {"type":"datetime"}
